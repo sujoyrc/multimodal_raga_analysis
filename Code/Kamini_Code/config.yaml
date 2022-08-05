@@ -1,0 +1,3 @@
+audiofolder: '../../Data/'
+modelfolder: './Kamini_Code/models/'
+contourfeatfolder: "contours/"

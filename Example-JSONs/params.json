@@ -1,0 +1,227 @@
+{
+    "__comment__": "This is an example json fed to MODEL_TRAINING_DRIVER_SCRIPT.py and sweep.py. This file defines the model structure and training related parameters such as epochs, batch_size etc. This values can be changed as command line arguements while running the script if required. The 'layers' key defines each layer with the key value depicting the layer name and the object defines that layer's hyperparameters. The 'input' value refers to the input to that layer and can be a list as well. Note: this is a comment and should be deleted before using this json with the script.",
+    "epochs": 5000,
+    "batch_size": 256,
+    "optimizer": {
+        "type": "Adam",
+        "learning_rate": 0.0001,
+        "learning_schedule": "ReduceLROnPlateau",
+        "factor": 0.8
+    },
+    "data_artifact": "hard_2-AG-finalVideo",
+    "early_stopping": true,
+    "tags": [
+        "easy-1",
+        "video",
+        "test"
+    ],
+    "layers": {
+        "conv_1": {
+            "input": "input",
+            "conv": {
+                "filter": 128,
+                "kernel_size": 3,
+                "activation": "linear",
+                "strides": 1,
+                "kernel_regularizer": {
+                    "l2": {
+                        "l": 0.01
+                    }
+                },
+                "padding": "same"
+            },
+            "bn": {},
+            "act": {
+                "activation": "relu"
+            }
+        },
+        "in_1": {
+            "input": "conv_1",
+            "inception": "a"
+        },
+        "avg_pool": {
+            "input": "in_1",
+            "pool": {
+                "type": "Average",
+                "pool_size": 600,
+                "strides": 600
+            }
+        },
+        "flatten": {
+            "input": "avg_pool",
+            "flatten": {},
+            "drop": {
+                "rate": 0.4
+            }
+        },
+        "output": {
+            "input": "flatten",
+            "kernel_regularizer": {
+                "l2": {
+                    "l": 0.01
+                }
+            }
+        }
+    },
+    "inception_module": {
+        "a": {
+            "common": {
+                "conv": {
+                    "kernel_size": 3
+                }
+            },
+            "branch_1": {
+                "input": "input",
+                "conv": {
+                    "filter": 32,
+                    "kernel_size": 1,
+                    "activation": "linear",
+                    "strides": 1,
+                    "kernel_regularizer": {
+                        "l2": {
+                            "l": 0.01
+                        }
+                    },
+                    "padding": "same"
+                },
+                "bn": {},
+                "act": {
+                    "activation": "relu"
+                }
+            },
+            "branch_2_1": {
+                "input": "input",
+                "conv": {
+                    "filter": 32,
+                    "kernel_size": 1,
+                    "activation": "linear",
+                    "strides": 1,
+                    "kernel_regularizer": {
+                        "l2": {
+                            "l": 0.01
+                        }
+                    },
+                    "padding": "same"
+                },
+                "bn": {},
+                "act": {
+                    "activation": "relu"
+                }
+            },
+            "branch_2_2": {
+                "input": "branch_2_1",
+                "conv": {
+                    "filter": 32,
+                    "kernel_size": 3,
+                    "activation": "linear",
+                    "strides": 1,
+                    "kernel_regularizer": {
+                        "l2": {
+                            "l": 0.01
+                        }
+                    },
+                    "padding": "same"
+                },
+                "bn": {},
+                "act": {
+                    "activation": "relu"
+                }
+            },
+            "branch_3_1": {
+                "input": "input",
+                "conv": {
+                    "filter": 32,
+                    "kernel_size": 1,
+                    "activation": "linear",
+                    "strides": 1,
+                    "kernel_regularizer": {
+                        "l2": {
+                            "l": 0.01
+                        }
+                    },
+                    "padding": "same"
+                },
+                "bn": {},
+                "act": {
+                    "activation": "relu"
+                }
+            },
+            "branch_3_2": {
+                "input": "branch_3_1",
+                "conv": {
+                    "filter": 32,
+                    "kernel_size": 3,
+                    "activation": "linear",
+                    "strides": 1,
+                    "kernel_regularizer": {
+                        "l2": {
+                            "l": 0.01
+                        }
+                    },
+                    "padding": "same"
+                },
+                "bn": {},
+                "act": {
+                    "activation": "relu"
+                }
+            },
+            "branch_3_3": {
+                "input": "branch_3_2",
+                "conv": {
+                    "filter": 32,
+                    "kernel_size": 3,
+                    "activation": "linear",
+                    "strides": 1,
+                    "kernel_regularizer": {
+                        "l2": {
+                            "l": 0.01
+                        }
+                    },
+                    "padding": "same"
+                },
+                "bn": {},
+                "act": {
+                    "activation": "relu"
+                }
+            },
+            "branch_4_1": {
+                "input": "input",
+                "pool": {
+                    "type": "Average",
+                    "pool_size": 3,
+                    "strides": 1,
+                    "padding": "same"
+                }
+            },
+            "branch_4_2": {
+                "input": "branch_4_1",
+                "conv": {
+                    "filter": 32,
+                    "kernel_size": 1,
+                    "activation": "linear",
+                    "strides": 1,
+                    "kernel_regularizer": {
+                        "l2": {
+                            "l": 0.01
+                        }
+                    },
+                    "padding": "same"
+                }
+            },
+            "in_1_concat": {
+                "input": [
+                    "branch_1",
+                    "branch_2_2",
+                    "branch_3_3",
+                    "branch_4_2"
+                ],
+                "concat": {
+                    "axis": -1
+                },
+                "drop": {
+                    "rate": 0.5
+                }
+            }
+        }
+    }
+}

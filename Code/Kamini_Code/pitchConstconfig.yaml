@@ -1,0 +1,11 @@
+hopsize: 0.01 #sec
+MaximumNumberOfCandidatesPerFrame: 10
+VoicedUnvoicedCost: 0.01 #0.2
+OctaveJumpCost: 0.01 #0.2
+pitch_floor: 100.0
+pitch_ceil: 650.0
+winlen: 0.02
+octave_cost: 0.04
+voicing_threshold: 0.43
+silence_threshold: 0.03
+interp_size: 15

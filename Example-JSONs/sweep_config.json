@@ -1,0 +1,71 @@
+{
+	"__comment__": "This is an example json fed to SWEEP.py. This file defines the sweep related parameters. These values can be changed as command line arguements while running the script if required. Note: this is a comment and should be deleted before using this json with the script.",
+	"method": "bayes",
+		"metric": {
+			"name": "best_val_accuracy",
+			"goal": "maximize"
+		},
+		"early_terminate": {
+			"type": "hyperband",
+			"min_iter": 50,
+			"eta": 2
+		},
+    	"parameters": {
+    		"layers.conv_1.conv.filter": {
+    			"values":[16, 32, 64, 128]
+    		},
+    		"layers.conv_1.conv.kernel_size": {
+    			"values": [3, 5, 7]
+    		},
+			"layers.avg_pool.pool.type": {
+				"values": ["Max", "Average"]
+			},
+    		"inception_module.a.common.conv.kernel_size": {
+				"values": [3, 5, 7]
+			},
+			"inception_module.a.branch_1.conv.filter": {
+				"distribution": "int_uniform",
+				"min": 4,
+				"max": 32
+			},
+			"inception_module.a.branch_2_1.conv.filter": {
+				"distribution": "int_uniform",
+				"min": 4,
+				"max": 32
+			},
+			"inception_module.a.branch_2_2.conv.filter": {
+				"distribution": "int_uniform",
+				"min": 4,
+				"max": 32
+			},
+			"inception_module.a.branch_3_1.conv.filter": {
+				"distribution": "int_uniform",
+				"min": 4,
+				"max": 32
+			},
+			"inception_module.a.branch_3_2.conv.filter": {
+				"distribution": "int_uniform",
+				"min": 4,
+				"max": 32
+			},
+			"inception_module.a.branch_3_3.conv.filter": {
+				"distribution": "int_uniform",
+				"min": 4,
+				"max": 32
+			},
+			"inception_module.a.branch_4_1.pool.type": {
+				"values": ["Max", "Average"]
+			},
+			"inception_module.a.branch_4_1.pool.pool_size": {
+				"values": [3, 5]
+			},
+			"inception_module.a.branch_4_2.conv.filter": {
+				"distribution": "int_uniform",
+				"min": 4,
+				"max": 32
+			},
+			"inception_module.a.in_1_concat.drop.rate": {
+				"values": [0.3, 0.4, 0.5, 0.6, 0.7]
+			}
+		}
+}

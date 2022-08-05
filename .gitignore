@@ -1,0 +1,37 @@
+Code/pretrained_models/
+Data/
+Code/.ipynb_checkpoints/
+Code/__pycache__
+Code/Kamini_Code/__pycache__/
+Models/
+Archived/PitchInter/
+Pitch/
+Seqs/
+Presentation/
+Code/wandb/
+Seqs-old/
+Code/artifacts/
+Data-ForHemantha/
+Figs/
+Code/Jin\ Code/
+Code/Jin\ Code\ 2/
+Code/Jin\ Code\ 3/
+Code/hand.zip
+New\ video\ data/
+Outputs/
+artifacts/
+model.hdf5
+Audio/
+Video\ Data/
+VideoOutput/
+solo_prediction/
+wandb/
+Final Video Data/
+CSV_FIles_134.zip
+CSV_FIles_134/
+CSV_solo_unfiltered.zip
+Final Both Data/
+Final Video Predictions/
+Pose_estimation_Indian_singers_11Aug_clean-nithya.docx
+fig.png
+paper/
